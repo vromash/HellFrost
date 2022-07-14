@@ -1,0 +1,41 @@
+name: Build project
+
+on:
+- workflow_dispatch
+
+jobs:
+  build:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+        - StandaloneWindows64 # Build a Windows 64-bit standalone.
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        lfs: true
+
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: Library
+        key: Library-${{ matrix.targetPlatform }}
+        restore-keys: Library-
+
+    - name: Build
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      with:
+        targetPlatform: ${{ matrix.targetPlatform }}
+        unityVersion: 2021.3.0f1
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build-${{ matrix.targetPlatform }}
+        path: build/${{ matrix.targetPlatform }}
