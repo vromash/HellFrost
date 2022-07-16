@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Dice;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,7 +13,6 @@ namespace Enemy
     {
         public EnemyTypeChance[] types;
         public float waveDuration;
-        public int waveRepeatTimes;
         public int enemyNumber;
     }
 
@@ -27,7 +28,9 @@ namespace Enemy
         [SerializeField] private EnemyWave[] waves;
         [SerializeField] private BoxCollider2D[] spawnAreas;
         [SerializeField] private EnemyPool enemyPool;
+        [SerializeField] private TMP_Text infoText;
 
+        [SerializeField] private float timeoutBetweenWaves;
         [SerializeField] private float minSpawnCooldown;
         [SerializeField] private float minConcurrentSpawnNumber;
         [SerializeField] private float maxConcurrentSpawnNumber;
@@ -35,6 +38,7 @@ namespace Enemy
         private readonly Queue<EnemyType> _enemiesToSpawn = new();
         private readonly List<GameObject> _aliveEnemies = new();
 
+        private bool _isWaveActive;
         private int _currentWaveNumber;
         private EnemyWave _currentWave;
 
@@ -46,10 +50,13 @@ namespace Enemy
         private void Start()
         {
             PrepareWave();
+            StartCoroutine(StartWave());
         }
 
         private void Update()
         {
+            if (!_isWaveActive) return;
+
             if (_spawnCooldownTimer > 0)
             {
                 _spawnCooldownTimer -= Time.deltaTime;
@@ -60,6 +67,20 @@ namespace Enemy
             {
                 SpawnEnemies();
             }
+        }
+
+        private IEnumerator StartWave()
+        {
+            infoText.text = "3...";
+            yield return new WaitForSeconds(1f);
+            infoText.text = "2...";
+            yield return new WaitForSeconds(1f);
+            infoText.text = "1...";
+            yield return new WaitForSeconds(1f);
+            infoText.text = "go!";
+            _isWaveActive = true;
+            yield return new WaitForSeconds(1f);
+            infoText.text = "";
         }
 
         private void PrepareWave()
@@ -73,12 +94,18 @@ namespace Enemy
             _currentWave = waves[waveToChoose - 1];
             for (var i = 0; i < _currentWave.enemyNumber; i++)
             {
-                foreach (var typeChance in _currentWave.types)
+                for (var j = 0; j < _currentWave.types.Length; j++)
                 {
-                    if (Random.Range(0, 101) > typeChance.chance)
+                    if (j == _currentWave.types.Length - 1)
+                    {
+                        _enemiesToSpawn.Enqueue(_currentWave.types[j].enemyType);
+                        break;
+                    }
+
+                    if (Random.Range(0, 101) > _currentWave.types[j].chance)
                         continue;
 
-                    _enemiesToSpawn.Enqueue(typeChance.enemyType);
+                    _enemiesToSpawn.Enqueue(_currentWave.types[j].enemyType);
                     break;
                 }
             }
@@ -93,6 +120,19 @@ namespace Enemy
 
             _spawnCooldownTimer = _initialSpawnCooldown;
             _previousSpawnCooldown = _initialSpawnCooldown;
+        }
+
+        private IEnumerator EndWave()
+        {
+            _isWaveActive = false;
+            PrepareWave();
+            for (int i = 0; i < timeoutBetweenWaves; i++)
+            {
+                infoText.text = $"wave completed\nnext wave starts in {timeoutBetweenWaves - i} seconds...";
+                yield return new WaitForSeconds(1f);
+            }
+
+            StartCoroutine(StartWave());
         }
 
         private void SpawnEnemies()
@@ -132,12 +172,15 @@ namespace Enemy
         {
             enemyGO.GetComponent<EnemyHealth>().onDied -= RegisterDiedEnemy;
             _aliveEnemies.Remove(enemyGO);
+
+            if (_aliveEnemies.Count == 0)
+            {
+                StartCoroutine(EndWave());
+            }
         }
 
-        private Vector3 GetSpawnPosition()
-        {
-            return GetRandomPointInsideCollider(spawnAreas[Random.Range(0, spawnAreas.Length)]);
-        }
+        private Vector3 GetSpawnPosition() =>
+            GetRandomPointInsideCollider(spawnAreas[Random.Range(0, spawnAreas.Length)]);
 
         private Vector3 GetRandomPointInsideCollider(BoxCollider2D boxCollider)
         {

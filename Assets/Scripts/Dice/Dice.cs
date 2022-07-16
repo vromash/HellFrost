@@ -12,12 +12,20 @@ namespace Dice
         Twenty
     }
 
+    public enum DiceElement
+    {
+        Fire,
+        Frost
+    }
+
     public class Dice
     {
         private readonly Random _rnd;
 
         private readonly int _value;
+        private readonly DiceElement _diceElement;
         private readonly DiceShape _shape;
+
         private readonly DiceShape[] _shapes =
             {DiceShape.Four, DiceShape.Six, DiceShape.Eight, DiceShape.Ten, DiceShape.Twelve, DiceShape.Twenty};
 
@@ -26,9 +34,11 @@ namespace Dice
             _rnd = new Random();
             _value = _rnd.Next(1, 20);
             _shape = Shape(_value);
+            _diceElement = _value % 2 == 0 ? DiceElement.Frost : DiceElement.Fire;
         }
 
         public int Value() => _value;
+        public DiceElement Element() => _diceElement;
 
         public string Shape()
         {

@@ -1,3 +1,4 @@
+using Dice;
 using UnityEngine;
 
 namespace Hero
@@ -7,13 +8,16 @@ namespace Hero
         [SerializeField] private float speed;
         [SerializeField] private float speedLimiter;
 
+        private HeroVisuals _visuals;
         private Rigidbody2D _rb;
         private float _inputHorizontal;
         private float _inputVertical;
+        private DiceElement _element;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _visuals = GetComponent<HeroVisuals>();
         }
 
         private void Update()
@@ -33,11 +37,15 @@ namespace Hero
                 }
 
                 _rb.velocity = new Vector2(_inputHorizontal, _inputVertical) * speed;
+                _visuals.SetRunAnimation(_element);
             }
             else
             {
+                _visuals.SetIdleAnimation(_element);
                 _rb.velocity = new Vector2(0, 0);
             }
         }
+
+        public void UpdateDiceElement(DiceElement element) => _element = element;
     }
 }

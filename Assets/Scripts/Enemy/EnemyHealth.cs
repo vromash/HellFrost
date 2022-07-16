@@ -8,6 +8,10 @@ namespace Enemy
         public event Action<GameObject> onDied;
 
         [SerializeField] private int maxHealth;
+        [SerializeField] private bool resistsEven;
+        [SerializeField] private bool resistsOdd;
+        [SerializeField] private bool absorbEven;
+
         private int _health;
 
         public void Initialize()
@@ -15,14 +19,30 @@ namespace Enemy
             _health = maxHealth;
         }
 
+        public bool ResistsEven() => resistsEven;
+        public bool ResistsOdd() => resistsOdd;
+
         public void TakeDamage(int amount)
         {
+            if (amount % 2 == 0 && absorbEven)
+            {
+                Heal(amount);
+                return;
+            }
+
             _health -= amount <= 0 ? 1 : amount;
             if (_health <= 0)
             {
                 _health = 0;
                 Die();
             }
+        }
+
+        private void Heal(int amount)
+        {
+            _health += amount;
+            transform.localScale = new Vector3(transform.localScale.x + 0.2f, transform.localScale.y + 0.2f,
+                transform.localScale.z + 0.2f);
         }
 
         private void Die()

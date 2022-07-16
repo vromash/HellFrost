@@ -88,7 +88,6 @@ namespace Enemy
             var diceGO = onThrew?.Invoke(transform.position, Damage());
             diceGO.GetComponent<DiceProjectile>().Throw(_target.position);
             _visuals.SetThrowAnimation();
-
         }
 
         private int Damage() => Random.Range(1, _maxDamage);

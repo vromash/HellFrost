@@ -19,6 +19,8 @@ namespace Dice
                 AddDice();
         }
 
+        public Dice Next() => _tray.Peek();
+
         public Dice Get()
         {
             var dice = _tray.Dequeue();
@@ -35,6 +37,8 @@ namespace Dice
 
             var diceDisplay = Instantiate(uiDicePrefab, uiDiceParent);
             diceDisplay.GetComponent<TMP_Text>().text = $"{dice.Value()} {dice.Shape()}";
+            var textColor = dice.Element() == DiceElement.Fire ? Color.red : Color.blue;
+            diceDisplay.GetComponent<TMP_Text>().color = textColor;
             _displays.Enqueue(diceDisplay);
         }
     }

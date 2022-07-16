@@ -5,6 +5,9 @@ namespace Hero
 {
     public class DiceThrower : MonoBehaviour
     {
+        [SerializeField] private DiceTray diceTray;
+        [SerializeField] private HeroVisuals heroVisuals;
+        [SerializeField] private HeroMovement heroMovement;
         [SerializeField] private Transform diceSpawnPosition;
         [SerializeField] private DicePool dicePool;
         [SerializeField] private float cooldown;
@@ -40,6 +43,8 @@ namespace Hero
                 _allowedToThrow = false;
                 var dice = dicePool.Get(diceSpawnPosition.position);
                 dice.GetComponent<DiceProjectile>().Throw(_mousePosition);
+                heroVisuals.SetThrowAnimation();
+                heroMovement.UpdateDiceElement(diceTray.Next().Element());
             }
         }
 

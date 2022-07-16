@@ -15,12 +15,16 @@ namespace Dice
         [SerializeField] private float ttl;
 
         private Rigidbody2D _rb;
+        private CircleCollider2D _collider2D;
         private int _damage;
         private float _lifeTimer;
+        private bool _isEven;
+        private bool _resisted;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _collider2D = GetComponent<CircleCollider2D>();
         }
 
         private void Update()
@@ -30,7 +34,11 @@ namespace Dice
                 Destroy();
         }
 
-        public void SetDamage(int damage) => _damage = damage;
+        public void SetDamage(int damage)
+        {
+            _damage = damage;
+            _isEven = _damage % 2 == 0;
+        }
 
         public void Throw(Vector3 targetPosition)
         {
@@ -44,12 +52,25 @@ namespace Dice
             transform.rotation = Quaternion.Euler(0, 0, rotationZ + 90);
 
             _lifeTimer = 0;
+            _resisted = false;
         }
 
         private void OnCollisionEnter2D(Collision2D col)
         {
+            if (_resisted) return;
+
             if (col.gameObject.CompareTag("Enemy"))
             {
+                if (_isEven && col.gameObject.GetComponent<EnemyHealth>().ResistsEven())
+                {
+                    Bounce();
+                    return;
+                }
+                else
+                {
+                    col.gameObject.GetComponent<EnemyHealth>().ResistsOdd();
+                }
+
                 col.gameObject.GetComponent<EnemyHealth>().TakeDamage(_damage);
                 Hit(FontColor.White);
             }
@@ -64,6 +85,12 @@ namespace Dice
             {
                 Destroy();
             }
+        }
+
+        private void Bounce()
+        {
+            _resisted = true;
+            _lifeTimer = 1f;
         }
 
         private void Hit(FontColor color)
