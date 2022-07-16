@@ -1,5 +1,6 @@
 using System;
 using Enemy;
+using Hero;
 using UI;
 using UnityEngine;
 
@@ -31,14 +32,14 @@ namespace Dice
 
         public void SetDamage(int damage) => _damage = damage;
 
-        public void Instantiate(Vector3 mousePosition)
+        public void Throw(Vector3 targetPosition)
         {
             var position = transform.position;
 
-            var direction = mousePosition - position;
+            var direction = targetPosition - position;
             _rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
-            var rotation = position - mousePosition;
+            var rotation = position - targetPosition;
             var rotationZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, rotationZ + 90);
 
@@ -50,7 +51,13 @@ namespace Dice
             if (col.gameObject.CompareTag("Enemy"))
             {
                 col.gameObject.GetComponent<EnemyHealth>().TakeDamage(_damage);
-                Hit();
+                Hit(FontColor.White);
+            }
+
+            if (col.gameObject.CompareTag("Hero"))
+            {
+                col.gameObject.GetComponent<HeroHealth>().TakeDamage(_damage);
+                Hit(FontColor.Red);
             }
 
             if (col.gameObject.CompareTag("Wall"))
@@ -59,9 +66,9 @@ namespace Dice
             }
         }
 
-        private void Hit()
+        private void Hit(FontColor color)
         {
-            onHit?.Invoke(transform.position, _damage, FontColor.White);
+            onHit?.Invoke(transform.position, _damage, color);
             Destroy();
         }
 

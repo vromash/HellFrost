@@ -3,8 +3,8 @@ namespace Enemy
     public enum EnemyType
     {
         Goblin,
-        Orc,
-        Imp,
+        Beholder,
+        Skeleton,
         Ogre,
         Cube
     }

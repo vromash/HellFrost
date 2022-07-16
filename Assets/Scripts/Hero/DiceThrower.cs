@@ -35,11 +35,11 @@ namespace Hero
                 return;
             }
 
-            if (Input.GetMouseButton(0) && _allowedToThrow)
+            if (Input.GetMouseButtonDown(0) && _allowedToThrow)
             {
                 _allowedToThrow = false;
                 var dice = dicePool.Get(diceSpawnPosition.position);
-                dice.GetComponent<DiceProjectile>().Instantiate(_mousePosition);
+                dice.GetComponent<DiceProjectile>().Throw(_mousePosition);
             }
         }
 
