@@ -15,10 +15,10 @@ namespace UI
             _pool = new ObjectPool<GameObject>(Create, OnGet, OnRelease);
         }
 
-        public void Spawn(Vector2 position, int damage)
+        public void Spawn(Vector2 position, int damage, FontColor color)
         {
             var number = _pool.Get();
-            number.GetComponent<DamageNumber>().Activate(position, damage);
+            number.GetComponent<DamageNumber>().Activate(position, damage, color);
         }
 
         private void Release(GameObject number)

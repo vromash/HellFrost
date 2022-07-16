@@ -29,7 +29,7 @@ namespace Dice
             return diceGO;
         }
 
-        public void Release(GameObject dice)
+        private void Release(GameObject dice)
         {
             _pool.Release(dice);
         }
@@ -49,7 +49,7 @@ namespace Dice
 
         private void OnRelease(GameObject dice)
         {
-            dice.SetActive(false);
+            // dice.SetActive(false);
         }
     }
 }

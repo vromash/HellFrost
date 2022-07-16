@@ -1,4 +1,5 @@
 using Enemy;
+using UI;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -9,6 +10,7 @@ namespace Dice
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform spawnParent;
         [SerializeField] private Transform target;
+        [SerializeField] private DamageNumberPool damageNumberPool;
 
         private ObjectPool<GameObject> _pool;
 
@@ -29,6 +31,7 @@ namespace Dice
         {
             var enemy = _pool.Get();
             enemy.GetComponent<EnemyHealth>().Initialize();
+            enemy.GetComponent<EnemyAttack>().onHit += damageNumberPool.Spawn;
             return enemy;
         }
 

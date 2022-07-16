@@ -1,12 +1,13 @@
 using System;
 using Enemy;
+using UI;
 using UnityEngine;
 
 namespace Dice
 {
     public class DiceProjectile : MonoBehaviour
     {
-        public event Action<Vector2, int> onHit;
+        public event Action<Vector2, int, FontColor> onHit;
         public event Action<GameObject> onDestroy;
 
         [SerializeField] private float force;
@@ -51,17 +52,23 @@ namespace Dice
                 col.gameObject.GetComponent<EnemyHealth>().TakeDamage(_damage);
                 Hit();
             }
+
+            if (col.gameObject.CompareTag("Wall"))
+            {
+                Destroy();
+            }
         }
 
         private void Hit()
         {
-            onHit?.Invoke(transform.position, _damage);
+            onHit?.Invoke(transform.position, _damage, FontColor.White);
             Destroy();
         }
 
         private void Destroy()
         {
             onDestroy?.Invoke(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

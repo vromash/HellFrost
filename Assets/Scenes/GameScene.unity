@@ -213,9 +213,9 @@ GameObject:
   - component: {fileID: 28138392}
   - component: {fileID: 28138394}
   - component: {fileID: 28138393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grounds_tiles_0 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -884,7 +884,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1050,10 +1050,10 @@ RectTransform:
   m_Father: {fileID: 1889664460}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159.99998, y: -420.9538}
-  m_SizeDelta: {x: 319.99997, y: 841.9076}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809572564
 MonoBehaviour:
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   prefab: {fileID: 6506041244321204065, guid: 1cee6590c0484f04292b72a4cf664ecd, type: 3}
   spawnParent: {fileID: 51835745}
   target: {fileID: 1368000227}
+  damageNumberPool: {fileID: 5167690}
 --- !u!114 &1110030520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,14 +1243,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - types: []
-    waveDuration: 0
-    waveRepeatTimes: 0
-    enemyNumber: 0
   - types:
     - enemyType: 0
       chance: 100
-    waveDuration: 5000
+    waveDuration: 90
     waveRepeatTimes: 0
     enemyNumber: 50
   spawnAreas:
@@ -1258,7 +1255,9 @@ MonoBehaviour:
   - {fileID: 712468191}
   - {fileID: 1201637570}
   enemyPool: {fileID: 1110030519}
-  spawnIntervalOffset: 0.05
+  minSpawnCooldown: 0.5
+  minConcurrentSpawnNumber: 1
+  maxConcurrentSpawnNumber: 1
 --- !u!1 &1138881519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1331,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1429,9 +1428,9 @@ GameObject:
   - component: {fileID: 1368000232}
   - component: {fileID: 1368000230}
   - component: {fileID: 1368000231}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1537,7 +1536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a09440ff6e4c96439dd0c4b931989a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   speedLimiter: 0.7
 --- !u!114 &1368000230
 MonoBehaviour:
@@ -1580,7 +1579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb736f2b30e14d3e931dc86dd742da4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 50
 --- !u!1 &1409143850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,9 +1591,9 @@ GameObject:
   - component: {fileID: 1409143851}
   - component: {fileID: 1409143853}
   - component: {fileID: 1409143852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grounds_tiles_0 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1777,9 +1776,9 @@ GameObject:
   - component: {fileID: 1499237244}
   - component: {fileID: 1499237246}
   - component: {fileID: 1499237245}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grounds_tiles_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1904,7 +1903,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1965,6 +1964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -2012,7 +2012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664324381}
   - component: {fileID: 1664324382}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DiceThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884695523}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DiceSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2323,9 +2323,9 @@ GameObject:
   - component: {fileID: 1942421146}
   - component: {fileID: 1942421148}
   - component: {fileID: 1942421147}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grounds_tiles_0 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2547,7 +2547,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2597,10 +2597,10 @@ RectTransform:
   m_Father: {fileID: 1889664460}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159.99998, y: -912.0665}
-  m_SizeDelta: {x: 319.99997, y: 140.31793}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2140544515
 MonoBehaviour:

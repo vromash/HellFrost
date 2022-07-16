@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6476360950389231242}
   - component: {fileID: 6476360950389231243}
   - component: {fileID: 7497259178467429305}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DamageNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.111, y: 0.98}
-  m_SizeDelta: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.4035, y: 1.0658}
+  m_SizeDelta: {x: 1.0851, y: 0.6251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6476360950389231242
 MeshRenderer:
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 741913722732313541, guid: 6506d864110ba594aa251478ce19c9ff, type: 2}
+  - {fileID: 741913722732313541, guid: e02a63b4a534e8d4db204a7c9fbf3828, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6506d864110ba594aa251478ce19c9ff, type: 2}
-  m_sharedMaterial: {fileID: 741913722732313541, guid: 6506d864110ba594aa251478ce19c9ff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e02a63b4a534e8d4db204a7c9fbf3828, type: 2}
+  m_sharedMaterial: {fileID: 741913722732313541, guid: e02a63b4a534e8d4db204a7c9fbf3828, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -188,3 +188,5 @@ MonoBehaviour:
   endColor: {r: 1, g: 1, b: 1, a: 0}
   offset: {x: 0, y: -0.5, z: 0}
   fadeDuration: 2
+  whiteFont: {fileID: 11400000, guid: 6506d864110ba594aa251478ce19c9ff, type: 2}
+  redFont: {fileID: 11400000, guid: e02a63b4a534e8d4db204a7c9fbf3828, type: 2}
