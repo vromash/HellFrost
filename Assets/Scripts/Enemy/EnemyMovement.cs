@@ -6,7 +6,14 @@ namespace Enemy
     {
         [SerializeField] private int speed;
 
+        private Rigidbody2D _rb;
         private Transform _target;
+        private Vector2 _direction;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
 
         public void Initialize(Transform target)
         {
@@ -15,7 +22,12 @@ namespace Enemy
 
         private void Update()
         {
-            transform.position = Vector2.MoveTowards(transform.position, _target.position, speed * Time.deltaTime);
+            _direction = _target.position - transform.position;
+        }
+
+        private void FixedUpdate()
+        {
+            _rb.velocity = new Vector2(_direction.x, _direction.y).normalized * speed;
         }
     }
 }

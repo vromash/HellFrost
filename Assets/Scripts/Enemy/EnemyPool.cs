@@ -17,9 +17,27 @@ namespace Dice
             _pool = new ObjectPool<GameObject>(Create, OnGet, OnRelease);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown("e"))
+            {
+                Get();
+            }
+        }
+
+        public GameObject Get(EnemyType enemyType)
+        {
+            var enemy = _pool.Get();
+            enemy.GetComponent<EnemyHealth>().Initialize();
+            return enemy;
+        }
+
+
         public GameObject Get()
         {
-            return _pool.Get();
+            var enemy = _pool.Get();
+            enemy.GetComponent<EnemyHealth>().Initialize();
+            return enemy;
         }
 
         public void Release(GameObject enemy)
@@ -31,7 +49,7 @@ namespace Dice
         {
             var enemy = Instantiate(prefab, spawnParent.position, Quaternion.identity, spawnParent);
             enemy.GetComponent<EnemyMovement>().Initialize(target);
-
+            enemy.GetComponent<EnemyHealth>().onDied += Release;
             return enemy;
         }
 

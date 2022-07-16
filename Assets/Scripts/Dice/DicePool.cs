@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,6 +9,7 @@ namespace Dice
         [SerializeField] private DiceTray diceTray;
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform spawnParent;
+        [SerializeField] private DamageNumberPool damageNumberPool;
 
         private ObjectPool<GameObject> _pool;
 
@@ -20,8 +22,10 @@ namespace Dice
         {
             var dice = diceTray.Get();
             var diceGO = _pool.Get();
+
             diceGO.transform.position = position;
             diceGO.GetComponent<DiceProjectile>().SetDamage(dice.Value());
+
             return diceGO;
         }
 
@@ -33,6 +37,8 @@ namespace Dice
         private GameObject Create()
         {
             var dice = Instantiate(prefab, spawnParent.position, Quaternion.identity, spawnParent);
+            dice.GetComponent<DiceProjectile>().onDestroy += Release;
+            dice.GetComponent<DiceProjectile>().onHit += damageNumberPool.Spawn;
             return dice;
         }
 
