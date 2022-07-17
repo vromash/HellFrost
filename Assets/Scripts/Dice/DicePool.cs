@@ -25,7 +25,7 @@ namespace Dice
 
             diceGO.layer = LayerMask.NameToLayer("Projectile");
             diceGO.transform.position = position;
-            diceGO.GetComponent<DiceProjectile>().SetDamage(dice.Value(), dice.ShapeValue());
+            diceGO.GetComponent<DiceProjectile>().Initialize(dice.Value(), dice.ShapeValue());
 
             return diceGO;
         }
@@ -36,7 +36,7 @@ namespace Dice
 
             diceGO.layer = LayerMask.NameToLayer("EnemyProjectile");
             diceGO.transform.position = position;
-            diceGO.GetComponent<DiceProjectile>().SetDamage(damage, maxDamage);
+            diceGO.GetComponent<DiceProjectile>().Initialize(damage, maxDamage);
 
             return diceGO;
         }

@@ -23,11 +23,13 @@ namespace Dice
         private bool _isEven;
         private bool _resisted;
         private Vector3 _lastFrameVelocity;
+        private int _enemyProjectileLayer;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            _enemyProjectileLayer = LayerMask.NameToLayer("EnemyProjectile");
         }
 
         private void Update()
@@ -38,7 +40,7 @@ namespace Dice
                 Destroy();
         }
 
-        public void SetDamage(int damage, int maxDamage)
+        public void Initialize(int damage, int maxDamage)
         {
             _damage = damage;
             _maxDamage = maxDamage;
@@ -99,6 +101,45 @@ namespace Dice
             {
                 Destroy();
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Shield") && gameObject.layer == _enemyProjectileLayer)
+            {
+                var shield = col.GetComponent<HeroShield>();
+                var canPass = shield.CanPass(_isEven);
+                if (canPass) return;
+
+                if (!shield.ShouldBounce())
+                {
+                    Destroy();
+                    return;
+                }
+
+                BounceBack();
+            }
+        }
+
+        // private void OnTriggerStay2D(Collider2D col)
+        // {
+        //     if (!col.CompareTag("Shield") || gameObject.layer != _enemyProjectileLayer) return;
+        //
+        //     var shield = col.GetComponent<HeroShield>();
+        //     var canPass = shield.CanPass(_isEven);
+        //     if (canPass) return;
+        //
+        //     if (!shield.ShouldBounce())
+        //     {
+        //         Destroy();
+        //         return;
+        //     }
+        //
+        //     BounceBack();
+        // }
+
+        private void BounceBack()
+        {
         }
 
         private void Bounce(Vector3 collisionNormal)
