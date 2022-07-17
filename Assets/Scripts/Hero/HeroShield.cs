@@ -66,7 +66,6 @@ namespace Hero
 
         private void PrepareShields()
         {
-            _isActive = false;
             _collider2D.enabled = false;
             shieldAll.GetComponent<ShieldCallback>().onParticleEnd += DisableShield;
             shieldFire.GetComponent<ShieldCallback>().onParticleEnd += DisableShield;
@@ -75,6 +74,7 @@ namespace Hero
 
         private void DisableShield()
         {
+            _isActive = false;
             _collider2D.enabled = false;
         }
 

@@ -33,7 +33,7 @@ namespace Core
 
         private void UpdateDisplay()
         {
-            display.text = $"score: {_currentScore}";
+            display.text = _currentScore.ToString();
             deathMenuCurrentScore.text = _currentScore.ToString();
 
             if (_currentScore > _bestScore)

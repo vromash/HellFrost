@@ -44,7 +44,7 @@ namespace UI
 
         private void UpdateHealthCounter()
         {
-            healthDisplay.text = $"HP: {heroHealth.Health()}/{heroHealth.MaxHealth()}";
+            healthDisplay.text = $"{heroHealth.Health()}/{heroHealth.MaxHealth()}";
         }
 
         public void Restart()

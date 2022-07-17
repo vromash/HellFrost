@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace Dice
@@ -27,6 +26,7 @@ namespace Dice
             var display = _displays.Dequeue();
             Destroy(display);
             AddDice();
+            _displays.Peek().GetComponent<DiceUI>().EnableKettle();
             return dice;
         }
 
@@ -36,9 +36,7 @@ namespace Dice
             _tray.Enqueue(dice);
 
             var diceDisplay = Instantiate(uiDicePrefab, uiDiceParent);
-            diceDisplay.GetComponent<TMP_Text>().text = $"{dice.Value()} {dice.Shape()}";
-            var textColor = dice.Element() == DiceElement.Fire ? Color.red : Color.blue;
-            diceDisplay.GetComponent<TMP_Text>().color = textColor;
+            diceDisplay.GetComponent<DiceUI>().Initialize(dice.Value(), dice.Shape());
             _displays.Enqueue(diceDisplay);
         }
     }

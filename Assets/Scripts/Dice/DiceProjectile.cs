@@ -65,7 +65,7 @@ namespace Dice
 
         private void SetAnimatorState()
         {
-            var element = _isEven ? "Frost" : "Fire";
+            var element = _isEven ? "Fire" : "Frost";
             _animator.SetTrigger($"D{_maxDamage}_{element}");
         }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d0626ebda5fe8c94791b7c2912619536
+guid: 2f7691f6788745f4faa6b36644b83b0e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,127 +104,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: d6_num_0
+      name: frame_dice_anim_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 12
         y: 0
-        width: 67
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 122
+        height: 199
+      alignment: 9
+      pivot: {x: 0.45901638, y: 0.5025126}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38ee3ab56c0957448b71bfe164d084ea
-      internalID: 1209971863
+      spriteID: 3db67bf21b019164e83875758c88c6ee
+      internalID: 5570952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d6_num_1
+      name: frame_dice_anim_1
       rect:
         serializedVersion: 2
-        x: 67
+        x: 135
         y: 0
-        width: 66
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 122
+        height: 199
+      alignment: 9
+      pivot: {x: 0.49180326, y: 0.5025126}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3e687494ae394843894123c7e4c906f
-      internalID: 166961640
+      spriteID: 679eca4d98fee8845b7476d1ed09cbc9
+      internalID: 1711734776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d6_num_2
+      name: frame_dice_anim_2
       rect:
         serializedVersion: 2
-        x: 133
+        x: 259
         y: 0
-        width: 66
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 122
+        height: 199
+      alignment: 9
+      pivot: {x: 0.49180326, y: 0.5025126}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c37034bdb761b741b9b2bd1baf71df0
-      internalID: 443299630
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: d6_num_3
-      rect:
-        serializedVersion: 2
-        x: 199
-        y: 0
-        width: 66
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bf3d9b8a555deb4c801be409bb20f7d
-      internalID: 516818727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: d6_num_4
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 0
-        width: 66
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 090667db74812b944ba3a034b9ff00df
-      internalID: -1322583160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: d6_num_5
-      rect:
-        serializedVersion: 2
-        x: 331
-        y: 0
-        width: 68
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1c33520d1ea59d478974c03320b9d03
-      internalID: -798938658
+      spriteID: 4078abcb27ebef24d9d8944cf9588c97
+      internalID: -36789528
       vertices: []
       indices: 
       edges: []
@@ -240,12 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      d6_num_1: 166961640
-      d6_num_0: 1209971863
-      d6_num_4: -1322583160
-      d6_num_3: 516818727
-      d6_num_2: 443299630
-      d6_num_5: -798938658
+      frame_dice_anim_0: 5570952
+      frame_dice_anim_2: -36789528
+      frame_dice_anim_1: 1711734776
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

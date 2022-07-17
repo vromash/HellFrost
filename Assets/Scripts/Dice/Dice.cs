@@ -18,6 +18,20 @@ namespace Dice
         Frost
     }
 
+    public enum DiceAbility
+    {
+        Fireball,
+        Shield,
+        Wave,
+        Ricochet,
+        Freeze,
+        Heal,
+        Dash,
+        Ghost,
+        Shotgun,
+        Lightning,
+    }
+
     public class Dice
     {
         private readonly Random _rnd;
@@ -39,6 +53,7 @@ namespace Dice
 
         public int Value() => _value;
         public DiceElement Element() => _diceElement;
+        public DiceShape Shape() => _shape;
 
         public int ShapeValue()
         {
@@ -54,8 +69,7 @@ namespace Dice
             };
         }
 
-
-        public string Shape()
+        public string ShapeString()
         {
             return _shape switch
             {
