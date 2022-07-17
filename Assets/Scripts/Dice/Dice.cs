@@ -40,6 +40,21 @@ namespace Dice
         public int Value() => _value;
         public DiceElement Element() => _diceElement;
 
+        public int ShapeValue()
+        {
+            return _shape switch
+            {
+                DiceShape.Four => 4,
+                DiceShape.Six => 6,
+                DiceShape.Eight => 8,
+                DiceShape.Ten => 10,
+                DiceShape.Twelve => 12,
+                DiceShape.Twenty => 20,
+                _ => 20
+            };
+        }
+
+
         public string Shape()
         {
             return _shape switch

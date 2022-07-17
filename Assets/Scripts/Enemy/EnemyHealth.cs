@@ -12,7 +12,13 @@ namespace Enemy
         [SerializeField] private bool resistsOdd;
         [SerializeField] private bool absorbEven;
 
+        private EnemyInventory _enemyInventory;
         private int _health;
+
+        private void Awake()
+        {
+            _enemyInventory = GetComponent<EnemyInventory>();
+        }
 
         public void Initialize()
         {
@@ -47,6 +53,7 @@ namespace Enemy
 
         private void Die()
         {
+            _enemyInventory.GiveCoins();
             onDied?.Invoke(gameObject);
         }
     }

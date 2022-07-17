@@ -10,7 +10,7 @@ namespace Enemy
     public class EnemyAttack : MonoBehaviour
     {
         public event Action<Vector2, int, FontColor> onHit;
-        public event Func<Vector2, int, GameObject> onThrew;
+        public event Func<Vector2, int, int, GameObject> onThrew;
 
         [SerializeField] private DiceShape damageDice;
         [SerializeField] private bool canThrow;
@@ -85,7 +85,7 @@ namespace Enemy
             _allowedToAttack = false;
             _attackCooldown = 2f;
 
-            var diceGO = onThrew?.Invoke(transform.position, Damage());
+            var diceGO = onThrew?.Invoke(transform.position, Damage(), _maxDamage);
             diceGO.GetComponent<DiceProjectile>().Throw(_target.position);
             _visuals.SetThrowAnimation();
         }

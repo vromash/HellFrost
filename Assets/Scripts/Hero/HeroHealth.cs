@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace Hero
@@ -7,6 +8,7 @@ namespace Hero
     {
         public event Action onHealthUpdated;
 
+        [SerializeField] private InGameUI inGameUI;
         [SerializeField] private int maxHealth;
         private int _health;
 
@@ -24,11 +26,13 @@ namespace Hero
                 Die();
             }
 
-            onHealthUpdated?.Invoke();;
+            onHealthUpdated?.Invoke();
+            ;
         }
 
         private void Die()
         {
+            inGameUI.ToggleDeathMenu();
         }
 
         public int Health() => _health;

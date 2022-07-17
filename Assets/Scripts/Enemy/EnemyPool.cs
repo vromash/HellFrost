@@ -1,4 +1,5 @@
 using System;
+using Core;
 using Enemy;
 using UI;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Dice
         [SerializeField] private Transform target;
         [SerializeField] private DicePool dicePool;
         [SerializeField] private DamageNumberPool damageNumberPool;
+        [SerializeField] private Score score;
 
         private ObjectPool<GameObject> _poolGoblin;
         private ObjectPool<GameObject> _poolBeholder;
@@ -69,6 +71,7 @@ namespace Dice
             enemy.GetComponent<EnemyMovement>().Initialize(target);
             enemy.GetComponent<EnemyAttack>().Initialize(target);
             enemy.GetComponent<EnemyHealth>().onDied += releaseFunc;
+            enemy.GetComponent<EnemyInventory>().onCoinsGived += score.IncreaseScore;
             return enemy;
         }
 

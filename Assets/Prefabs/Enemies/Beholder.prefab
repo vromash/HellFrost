@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8036191388448023171}
   - component: {fileID: 188944927669163328}
   - component: {fileID: 5134355810016364752}
+  - component: {fileID: -1709009112624125334}
   m_Layer: 8
   m_Name: Beholder
   m_TagString: Enemy
@@ -206,3 +207,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1633c3af104eee978645760e01ccd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1709009112624125334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091328595394617554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b152c5362bb2498984411037b5ab8449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins: 3

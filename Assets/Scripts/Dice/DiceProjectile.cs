@@ -16,7 +16,9 @@ namespace Dice
         [SerializeField] private float minVelocity;
 
         private Rigidbody2D _rb;
+        private Animator _animator;
         private int _damage;
+        private int _maxDamage;
         private float _lifeTimer;
         private bool _isEven;
         private bool _resisted;
@@ -25,6 +27,7 @@ namespace Dice
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -35,14 +38,16 @@ namespace Dice
                 Destroy();
         }
 
-        public void SetDamage(int damage)
+        public void SetDamage(int damage, int maxDamage)
         {
             _damage = damage;
+            _maxDamage = maxDamage;
             _isEven = _damage % 2 == 0;
         }
 
         public void Throw(Vector3 targetPosition)
         {
+            SetAnimatorState();
             var position = transform.position;
 
             var direction = targetPosition - position;
@@ -54,6 +59,12 @@ namespace Dice
 
             _lifeTimer = 0;
             _resisted = false;
+        }
+
+        private void SetAnimatorState()
+        {
+            var element = _isEven ? "Frost" : "Fire";
+            _animator.SetTrigger($"D{_maxDamage}_{element}");
         }
 
         private void OnCollisionEnter2D(Collision2D col)

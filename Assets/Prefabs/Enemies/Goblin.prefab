@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1811762482590897008}
   - component: {fileID: 8376028404127868083}
   - component: {fileID: 2686172953683118204}
+  - component: {fileID: 8095584807879745971}
   m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
@@ -177,6 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
+  resistsEven: 0
+  resistsOdd: 0
+  absorbEven: 0
 --- !u!114 &8376028404127868083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +207,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1633c3af104eee978645760e01ccd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8095584807879745971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497869178988810529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b152c5362bb2498984411037b5ab8449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins: 1
