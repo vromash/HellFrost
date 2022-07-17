@@ -6,6 +6,6 @@ namespace Enemy
         Beholder,
         Skeleton,
         Ogre,
-        Cube
+        Jelly
     }
 }

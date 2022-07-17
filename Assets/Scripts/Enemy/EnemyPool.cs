@@ -41,7 +41,7 @@ namespace Dice
                 EnemyType.Beholder => _poolBeholder.Get(),
                 EnemyType.Skeleton => _poolSkeleton.Get(),
                 EnemyType.Ogre => _poolOgre.Get(),
-                EnemyType.Cube => _poolCube.Get(),
+                EnemyType.Jelly => _poolCube.Get(),
                 _ => _poolGoblin.Get()
             };
 

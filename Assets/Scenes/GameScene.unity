@@ -1356,7 +1356,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - types:
+    - enemyType: 3
+      chance: 50
     - enemyType: 1
+      chance: 50
+    - enemyType: 4
       chance: 100
     waveDuration: 50
     enemyNumber: 10
@@ -2211,7 +2215,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1569974379

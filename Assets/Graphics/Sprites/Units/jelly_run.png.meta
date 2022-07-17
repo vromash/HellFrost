@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e913ec59e6f466847affbe342ab6f4da
+guid: 32a2ea1b260e7f3468db4697391110c1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,43 +104,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grounds_tiles_0
+      name: jelly_run_0
       rect:
         serializedVersion: 2
-        x: 270
-        y: 30
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 328
+        height: 378
+      alignment: 9
+      pivot: {x: 0.50914633, y: 0.58201057}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d162597204e2d64e9c3eacb393617fb
-      internalID: -608276462
+      spriteID: 91f49d0898b28424a89a2e69aecdd23f
+      internalID: 2057383860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grounds_tiles_1
+      name: jelly_run_1
       rect:
         serializedVersion: 2
-        x: 569
-        y: 30
-        width: 32
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 328
+        y: 0
+        width: 346
+        height: 378
+      alignment: 9
+      pivot: {x: 0.46242774, y: 0.58201057}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4c39ebee6db5fc48b8ccc87bb7ca733
-      internalID: 1821781135
+      spriteID: ee2f5a96f707bea4697550fba0391e99
+      internalID: -1868904723
       vertices: []
       indices: 
       edges: []
@@ -156,8 +156,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      grounds_tiles_0: -608276462
-      grounds_tiles_1: 1821781135
+      jelly_run_0: 2057383860
+      jelly_run_1: -1868904723
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

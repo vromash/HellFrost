@@ -11,24 +11,25 @@ namespace Dice
         public event Action<Vector2, int, FontColor> onHit;
         public event Action<GameObject> onDestroy;
 
-        [SerializeField] private float force;
+        [SerializeField] private float speed;
         [SerializeField] private float ttl;
+        [SerializeField] private float minVelocity;
 
         private Rigidbody2D _rb;
-        private CircleCollider2D _collider2D;
         private int _damage;
         private float _lifeTimer;
         private bool _isEven;
         private bool _resisted;
+        private Vector3 _lastFrameVelocity;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _collider2D = GetComponent<CircleCollider2D>();
         }
 
         private void Update()
         {
+            _lastFrameVelocity = _rb.velocity;
             _lifeTimer += Time.deltaTime;
             if (_lifeTimer >= ttl)
                 Destroy();
@@ -45,7 +46,7 @@ namespace Dice
             var position = transform.position;
 
             var direction = targetPosition - position;
-            _rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+            _rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
 
             var rotation = position - targetPosition;
             var rotationZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
@@ -61,24 +62,26 @@ namespace Dice
 
             if (col.gameObject.CompareTag("Enemy"))
             {
-                if (_isEven && col.gameObject.GetComponent<EnemyHealth>().ResistsEven())
+                switch (_isEven)
                 {
-                    Bounce();
-                    return;
+                    case true when col.gameObject.GetComponent<EnemyHealth>().ResistsEven():
+                        Bounce(col.contacts[0].normal);
+                        return;
+                    case false when col.gameObject.GetComponent<EnemyHealth>().ResistsOdd():
+                        Bounce(col.contacts[0].normal);
+                        return;
+                    default:
+                        col.gameObject.GetComponent<EnemyHealth>().TakeDamage(_damage);
+                        Hit(FontColor.White);
+                        return;
                 }
-                else
-                {
-                    col.gameObject.GetComponent<EnemyHealth>().ResistsOdd();
-                }
-
-                col.gameObject.GetComponent<EnemyHealth>().TakeDamage(_damage);
-                Hit(FontColor.White);
             }
 
             if (col.gameObject.CompareTag("Hero"))
             {
                 col.gameObject.GetComponent<HeroHealth>().TakeDamage(_damage);
                 Hit(FontColor.Red);
+                return;
             }
 
             if (col.gameObject.CompareTag("Wall"))
@@ -87,10 +90,15 @@ namespace Dice
             }
         }
 
-        private void Bounce()
+        private void Bounce(Vector3 collisionNormal)
         {
             _resisted = true;
-            _lifeTimer = 1f;
+            _lifeTimer = ttl - 0.5f;
+
+            var bounceSpeed = _lastFrameVelocity.magnitude;
+            var direction = Vector3.Reflect(_lastFrameVelocity.normalized, collisionNormal);
+
+            _rb.velocity = direction * Mathf.Max(bounceSpeed, minVelocity);
         }
 
         private void Hit(FontColor color)
