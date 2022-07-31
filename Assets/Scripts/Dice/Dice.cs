@@ -36,7 +36,7 @@ namespace Dice
     {
         private readonly Random _rnd;
 
-        private readonly int _value;
+        private int _value;
         private readonly DiceElement _diceElement;
         private readonly DiceShape _shape;
 
@@ -48,12 +48,63 @@ namespace Dice
             _rnd = new Random();
             _value = _rnd.Next(1, 20);
             _shape = Shape(_value);
-            _diceElement = _value % 2 == 0 ? DiceElement.Frost : DiceElement.Fire;
+            _diceElement = _value % 2 == 0 ? DiceElement.Fire : DiceElement.Frost;
         }
 
         public int Value() => _value;
         public DiceElement Element() => _diceElement;
         public DiceShape Shape() => _shape;
+
+        public void IncreaseDamage() => _value++;
+
+        public bool HasAbility()
+        {
+            switch (_value)
+            {
+                case 1:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 8:
+                case 10:
+                case 11:
+                case 12:
+                case 20:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public DiceAbility Ability()
+        {
+            switch (_value)
+            {
+                case 1:
+                    return DiceAbility.Fireball;
+                case 3:
+                    return DiceAbility.Shield;
+                case 4:
+                    return DiceAbility.Wave;
+                case 5:
+                    return DiceAbility.Ricochet;
+                case 6:
+                    return DiceAbility.Freeze;
+                case 8:
+                    return DiceAbility.Heal;
+                case 10:
+                    return DiceAbility.Dash;
+                case 11:
+                    return DiceAbility.Ghost;
+                case 12:
+                    return DiceAbility.Shotgun;
+                case 20:
+                    return DiceAbility.Lightning;
+                default:
+                    return DiceAbility.Fireball;
+            }
+        }
 
         public int ShapeValue()
         {

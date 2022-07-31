@@ -41,11 +41,16 @@ namespace Hero
             if (Input.GetMouseButtonDown(0) && _allowedToThrow)
             {
                 _allowedToThrow = false;
-                var dice = dicePool.Get(diceSpawnPosition.position);
-                dice.GetComponent<DiceProjectile>().Throw(_mousePosition);
-                heroVisuals.SetThrowAnimation();
-                heroMovement.UpdateDiceElement(diceTray.Next().Element());
+                Throw(false);
             }
+        }
+
+        public void Throw(bool withAbility)
+        {
+            var dice = dicePool.Get(diceSpawnPosition.position);
+            dice.GetComponent<DiceProjectile>().Throw(_mousePosition, withAbility);
+            heroVisuals.SetThrowAnimation();
+            heroMovement.UpdateDiceElement(diceTray.Next().Element());
         }
 
         private void TickCooldown()

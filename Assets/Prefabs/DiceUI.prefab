@@ -123,24 +123,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b984ef8f5500df04194c7002ec25974d, type: 3}
   - value: 3
     sprite: {fileID: 21300000, guid: f078431a8f5a7bd44a7471f2777fb287, type: 3}
-  - value: 4
-    sprite: {fileID: 21300000, guid: f892cb73644c09040a297f120080c6d8, type: 3}
-  - value: 5
-    sprite: {fileID: 21300000, guid: 6ddb4713a874a604e9d708b978516ecc, type: 3}
-  - value: 6
-    sprite: {fileID: 21300000, guid: 452aee6cd0a75eb4a9af7164781172f9, type: 3}
   - value: 8
     sprite: {fileID: 21300000, guid: ac09bf94b2101a846b45173df9635e80, type: 3}
   - value: 10
     sprite: {fileID: 21300000, guid: 19471394cea17204fa2acdc394f5276a, type: 3}
   - value: 11
     sprite: {fileID: 21300000, guid: 20d15498e1298fb4295fd00a0d143f9a, type: 3}
-  - value: 12
-    sprite: {fileID: 21300000, guid: caf034bd8b27b1746addba8fef34f979, type: 3}
-  - value: 20
-    sprite: {fileID: 21300000, guid: ec822726672be8a4588838377e41ac85, type: 3}
-  - value: 0
-    sprite: {fileID: 0}
   kettle: {fileID: 6933797017950311669}
   bonus: {fileID: 6933797018374397760}
   dice: {fileID: 6933797019097113495}

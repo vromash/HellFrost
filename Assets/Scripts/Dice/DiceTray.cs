@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Hero;
 using UnityEngine;
 
 namespace Dice
@@ -6,8 +8,10 @@ namespace Dice
     public class DiceTray : MonoBehaviour
     {
         [SerializeField] private int size;
+        [SerializeField] private DiceThrower diceThrower;
         [SerializeField] private GameObject uiDicePrefab;
         [SerializeField] private Transform uiDiceParent;
+        [SerializeField] private float fireballGrowSpeed;
 
         private readonly Queue<Dice> _tray = new();
         private readonly Queue<GameObject> _displays = new();
@@ -24,6 +28,7 @@ namespace Dice
         {
             var dice = _tray.Dequeue();
             var display = _displays.Dequeue();
+            StopAllCoroutines();
             Destroy(display);
             AddDice();
             _displays.Peek().GetComponent<DiceUI>().EnableKettle();
@@ -38,6 +43,25 @@ namespace Dice
             var diceDisplay = Instantiate(uiDicePrefab, uiDiceParent);
             diceDisplay.GetComponent<DiceUI>().Initialize(dice.Value(), dice.Shape());
             _displays.Enqueue(diceDisplay);
+
+            if (_tray.Peek().Value() == 1)
+                StartCoroutine(GrowFireball());
+        }
+
+        private IEnumerator GrowFireball()
+        {
+            var dice = _tray.Peek();
+            var diceUI = _displays.Peek().GetComponent<DiceUI>();
+            var toGrow = dice.ShapeValue() - dice.Value();
+            var wait = new WaitForSeconds(fireballGrowSpeed);
+            for (var i = 0; i < toGrow; i++)
+            {
+                yield return wait;
+                dice.IncreaseDamage();
+                diceUI.UpdateDamage(dice.Value());
+            }
+
+            diceThrower.Throw(false);
         }
     }
 }

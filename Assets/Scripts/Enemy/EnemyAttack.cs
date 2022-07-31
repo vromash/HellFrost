@@ -14,6 +14,7 @@ namespace Enemy
 
         [SerializeField] private DiceShape damageDice;
         [SerializeField] private bool canThrow;
+        [SerializeField] private AudioSource _audioSourceThrow;
 
         private int _maxDamage;
         private bool _allowedToAttack = true;
@@ -88,6 +89,7 @@ namespace Enemy
             var diceGO = onThrew?.Invoke(transform.position, Damage(), _maxDamage);
             diceGO.GetComponent<DiceProjectile>().Throw(_target.position);
             _visuals.SetThrowAnimation();
+            _audioSourceThrow.Play();
         }
 
         private int Damage() => Random.Range(1, _maxDamage);

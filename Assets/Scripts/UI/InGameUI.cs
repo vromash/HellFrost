@@ -14,6 +14,7 @@ namespace UI
 
         [SerializeField] private HeroHealth heroHealth;
         [SerializeField] private Score score;
+        [SerializeField] private GameObject tip;
 
         private void Start()
         {
@@ -26,6 +27,11 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Escape) && !deathMenuPanel.activeSelf)
             {
                 TogglePauseMenu();
+            }
+
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                tip.SetActive(!tip.activeSelf);
             }
         }
 

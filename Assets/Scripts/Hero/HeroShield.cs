@@ -42,7 +42,7 @@ namespace Hero
             }
         }
 
-        private void Activate(ShieldType t)
+        public void Activate(ShieldType t)
         {
             _isActive = true;
             _collider2D.enabled = true;

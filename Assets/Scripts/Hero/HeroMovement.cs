@@ -1,3 +1,4 @@
+using System.Collections;
 using Dice;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Hero
     {
         [SerializeField] private float speed;
         [SerializeField] private float speedLimiter;
+        [SerializeField] private float dashModifier;
+        [SerializeField] private float dashTime;
 
         private HeroVisuals _visuals;
         private Rigidbody2D _rb;
@@ -44,6 +47,13 @@ namespace Hero
                 _visuals.SetIdleAnimation(_element);
                 _rb.velocity = new Vector2(0, 0);
             }
+        }
+
+        public IEnumerator Dash()
+        {
+            speed += dashModifier;
+            yield return new WaitForSeconds(dashTime);
+            speed -= dashModifier;
         }
 
         public void UpdateDiceElement(DiceElement element) => _element = element;

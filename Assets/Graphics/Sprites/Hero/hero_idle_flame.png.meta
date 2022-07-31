@@ -109,10 +109,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 179
+        width: 176
         height: 350
       alignment: 9
-      pivot: {x: 0.5642458, y: 0.5314286}
+      pivot: {x: 0.5568182, y: 0.5314286}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: hero_idle_flame_1
       rect:
         serializedVersion: 2
-        x: 179
+        x: 176
         y: 0
-        width: 180
+        width: 182
         height: 350
       alignment: 9
-      pivot: {x: 0.5222222, y: 0.5314286}
+      pivot: {x: 0.52747256, y: 0.5314286}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

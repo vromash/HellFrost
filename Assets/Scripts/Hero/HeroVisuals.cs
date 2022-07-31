@@ -5,11 +5,17 @@ namespace Hero
 {
     public class HeroVisuals : MonoBehaviour
     {
+        [SerializeField] private Color invisibilityColor;
+
         private Animator _animator;
+        private SpriteRenderer _spriteRenderer;
+
+        private bool _isInvisible;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         public void SetRunAnimation(DiceElement el)
@@ -39,6 +45,12 @@ namespace Hero
         public void SetThrowAnimation()
         {
             _animator.SetTrigger("Throw");
+        }
+
+        public void ToggleInvisible()
+        {
+            _spriteRenderer.color = _isInvisible ? Color.white : invisibilityColor;
+            _isInvisible = !_isInvisible;
         }
     }
 }

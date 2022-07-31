@@ -26,6 +26,7 @@ namespace Dice
         [SerializeField] private Image bonus;
         [SerializeField] private Image dice;
 
+        private DiceShape _shape;
         private int _damage;
         private readonly Dictionary<int, Sprite> _abilityValueToSprite = new();
 
@@ -33,7 +34,6 @@ namespace Dice
         {
             foreach (var a in abilities)
             {
-                // Debug.Log(a.value + ": " + a.sprite.name);
                 _abilityValueToSprite.Add(a.value, a.sprite);
             }
         }
@@ -41,6 +41,7 @@ namespace Dice
         public void Initialize(int damage, DiceShape shape)
         {
             _damage = damage;
+            _shape = shape;
             var sprite = shape switch
             {
                 DiceShape.Four => d4[damage - 1],
@@ -54,7 +55,23 @@ namespace Dice
 
             dice.sprite = sprite;
             dice.SetNativeSize();
-            // dice.GetComponent<RectTransform>().sizeDelta = new Vector2(sprite.texture.width, sprite.texture.height);
+        }
+
+        public void UpdateDamage(int damage)
+        {
+            var sprite = _shape switch
+            {
+                DiceShape.Four => d4[damage - 1],
+                DiceShape.Six => d6[damage - 1],
+                DiceShape.Eight => d8[damage - 1],
+                DiceShape.Ten => d10[damage - 1],
+                DiceShape.Twelve => d12[damage - 1],
+                DiceShape.Twenty => d20[damage - 1],
+                _ => d4[damage - 1]
+            };
+
+            dice.sprite = sprite;
+            dice.SetNativeSize();
         }
 
         public void EnableKettle()
